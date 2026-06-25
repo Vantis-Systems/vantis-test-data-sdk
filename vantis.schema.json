@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "tables": [
+    {
+      "name": "posts",
+      "access": "private",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "primary_key": true,
+          "unique": false,
+          "default": {
+            "kind": "builtin",
+            "builtin": "gen_random_uuid()"
+          }
+        },
+        {
+          "name": "user_id",
+          "type": "uuid",
+          "nullable": false,
+          "primary_key": false,
+          "unique": false
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "nullable": false,
+          "primary_key": false,
+          "unique": false
+        }
+      ],
+      "foreign_keys": [
+        {
+          "name": "fk_posts_user_id",
+          "columns": [
+            "user_id"
+          ],
+          "ref_table": "users",
+          "ref_columns": [
+            "id"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "access": "private",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "nullable": false,
+          "primary_key": true,
+          "unique": false,
+          "default": {
+            "kind": "builtin",
+            "builtin": "gen_random_uuid()"
+          }
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "nullable": false,
+          "primary_key": false,
+          "unique": true
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "nullable": true,
+          "primary_key": false,
+          "unique": false
+        }
+      ]
+    }
+  ]
+}
